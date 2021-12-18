@@ -5,6 +5,7 @@ from flask_restful import Resource
 
 from services.executor import ExecutorService
 
+
 class ExecutorResource(Resource):
     """Executor de comandos"""
 
