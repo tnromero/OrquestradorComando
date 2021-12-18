@@ -8,9 +8,27 @@ class ExecutorService():
         self.id_execucao_projeto = id_execucao_projeto
     
     def exec_projeto(self):
-        print(f'executando projeto: {self.id_projeto}')
-        self.__buscar_ordem_execucao()
+        print(f'Iniciando execucao do projeto {self.id_projeto}')
+        print(f'Ocorrencia: {self.id_execucao_projeto}')
+        
+        i = 1
+        
+        id_comando_atual = self.__buscar_id_proximo_comando()
+        while id_comando_atual != None:
+            print(f'executando comando {i}:\n')
+            comando = self.__buscar_conteudo_comando(id_comando_atual)
 
-    
-    def __buscar_ordem_execucao(self) -> List[int]:
-        pass
+            print(f'Executando comando: {i}\n{comando}')
+            
+            i+=1
+            id_comando_atual = self.__buscar_id_proximo_comando()
+        
+        print(f'Finalizando execucao do projeto {self.id_projeto}')
+        print(f'Ocorrencia: {self.id_execucao_projeto}')
+
+
+    def __buscar_conteudo_comando(self) -> str:
+        return "Comando Aleatorio"
+
+    def __buscar_id_proximo_comando(self, id_comando_atual:int=None) -> int:
+        return None
