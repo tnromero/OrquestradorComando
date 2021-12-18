@@ -1,10 +1,23 @@
+import uuid
+from threading import Thread
+
 from flask_restful import Resource
 
-class Executor(Resource):
+from services.executor import ExecutorService
+
+class ExecutorResource(Resource):
     """Executor de comandos"""
 
     def get(self, id_projeto):
 
-        print(f'ID_Projeto = {id_projeto}')
+        id_execucao_projeto = uuid.uuid4()
 
-        return {'message': f'id_projeto={id_projeto}'}, 202
+        mensagem = {
+            'id_projeto': id_projeto,
+            'id_execucao_projeto': str(id_execucao_projeto)
+        }
+
+        exec = ExecutorService(id_projeto, id_execucao_projeto)
+        Thread(target=exec.exec_projeto()).start()
+
+        return mensagem, 202
