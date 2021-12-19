@@ -12,6 +12,7 @@ class DB():
         self.conn.close()
     
     def exec_comando(self, comando:str) -> str:
+        self.conn.row_factory = sqlite3.Row
         cursor = self.conn.cursor()
         cursor.execute(comando)
         resultado = cursor.fetchall()

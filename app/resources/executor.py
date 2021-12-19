@@ -18,7 +18,10 @@ class ExecutorResource(Resource):
             'id_execucao_projeto': str(id_execucao_projeto)
         }
 
+        
         exec = ExecutorService(id_projeto, id_execucao_projeto)
-        Thread(target=exec.exec_projeto()).start()
+        Thread(target=exec.exec_projeto, args=()).start()
+
 
         return mensagem, 202
+    
